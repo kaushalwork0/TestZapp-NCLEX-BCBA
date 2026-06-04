@@ -6,7 +6,11 @@
 }
 
 @theme inline {
-  --color-brand: #D11A41;
+  --color-primary: #C6364C;
+  --color-secondary: #5B7693;
+  --color-success: #34C759;
+  --color-background-muted: #F2F4F6;
+  --color-border-subtle: #E0E6EB;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

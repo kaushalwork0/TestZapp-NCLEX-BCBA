@@ -44,7 +44,7 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email Address *"
-              className="w-full pb-2 text-gray-900 placeholder-gray-500 bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-brand outline-none transition-colors"
+              className="w-full pb-2 text-gray-900 placeholder-gray-500 bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-primary outline-none transition-colors"
             />
           </div>
 
@@ -54,7 +54,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password *"
-              className="w-full pb-2 text-gray-900 placeholder-gray-500 bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-brand outline-none transition-colors pr-8"
+              className="w-full pb-2 text-gray-900 placeholder-gray-500 bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-primary outline-none transition-colors pr-8"
             />
             <button className="absolute right-0 bottom-2 text-gray-500 hover:text-gray-700">
               <Eye className="w-5 h-5" />
@@ -66,12 +66,12 @@ export default function Login() {
         <div className="flex gap-4 justify-center mb-6">
           <button
             onClick={handleLogin}
-            className="bg-brand text-white font-medium py-2.5 px-8 rounded flex-1 hover:bg-brand/90 transition-colors shadow-sm"
+            className="bg-primary text-white font-medium py-2.5 px-8 rounded flex-1 hover:bg-primary/90 transition-colors shadow-sm"
           >
             Sign In
           </button>
           <button
-            className="bg-brand text-white font-medium py-2.5 px-8 rounded flex-1 hover:bg-brand/90 transition-colors shadow-sm"
+            className="bg-primary text-white font-medium py-2.5 px-8 rounded flex-1 hover:bg-primary/90 transition-colors shadow-sm"
           >
             Sign Up
           </button>
@@ -79,13 +79,13 @@ export default function Login() {
 
         {/* Links */}
         <div className="flex flex-col items-center space-y-5 mt-auto mb-10">
-          <button className="text-brand text-sm hover:underline">
+          <button className="text-primary text-sm hover:underline">
             Forgot your Username or Password ?
           </button>
-          <button className="text-brand text-base hover:underline">
+          <button className="text-primary text-base hover:underline">
             Reset Password
           </button>
-          <button className="text-brand text-base hover:underline">
+          <button className="text-primary text-base hover:underline">
             Contact Support
           </button>
         </div>

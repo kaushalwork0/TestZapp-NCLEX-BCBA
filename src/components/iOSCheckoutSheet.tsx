@@ -9,9 +9,11 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
+  title?: string;
+  price?: string;
 }
 
-export function IOSCheckoutSheet({ isOpen, onClose, onSuccess }: Props) {
+export function IOSCheckoutSheet({ isOpen, onClose, onSuccess, title = "Item", price = "$99.00" }: Props) {
   const [step, setStep] = useState<"initial" | "processing" | "success">("initial");
 
   useEffect(() => {
@@ -69,6 +71,11 @@ export function IOSCheckoutSheet({ isOpen, onClose, onSuccess }: Props) {
               {/* Order Info */}
               <div className="bg-gray-50 rounded-2xl p-4 mb-6 space-y-4">
                 <div className="flex justify-between items-center border-b border-gray-200 pb-4">
+                  <span className="text-gray-500 text-sm">ITEM</span>
+                  <span className="font-medium text-sm text-right max-w-[200px] truncate">{title}</span>
+                </div>
+                
+                <div className="flex justify-between items-center border-b border-gray-200 pb-4">
                   <span className="text-gray-500 text-sm">CARD</span>
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-5 bg-blue-600 rounded flex items-center justify-center text-[10px] text-white font-bold tracking-wider">
@@ -80,7 +87,7 @@ export function IOSCheckoutSheet({ isOpen, onClose, onSuccess }: Props) {
 
                 <div className="flex justify-between items-center">
                   <span className="text-gray-500 text-sm">TOTAL</span>
-                  <span className="text-2xl font-bold">$99.00</span>
+                  <span className="text-2xl font-bold">{price}</span>
                 </div>
               </div>
 
