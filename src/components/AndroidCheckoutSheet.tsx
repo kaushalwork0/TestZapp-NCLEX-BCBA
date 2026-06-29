@@ -9,9 +9,11 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
+  title?: string;
+  price?: string;
 }
 
-export function AndroidCheckoutSheet({ isOpen, onClose, onSuccess }: Props) {
+export function AndroidCheckoutSheet({ isOpen, onClose, onSuccess, title = "Item", price = "$99.00" }: Props) {
   const [step, setStep] = useState<"initial" | "processing" | "success">("initial");
 
   useEffect(() => {
@@ -73,7 +75,7 @@ export function AndroidCheckoutSheet({ isOpen, onClose, onSuccess }: Props) {
               <div className="p-6 space-y-6">
                 <div className="text-center">
                   <h3 className="text-sm text-gray-500 mb-1">Total to pay</h3>
-                  <div className="text-4xl font-light text-gray-900">$99.00</div>
+                  <div className="text-4xl font-light text-gray-900">{price}</div>
                 </div>
 
                 <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-center gap-4">
