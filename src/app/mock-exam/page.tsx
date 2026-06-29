@@ -11,18 +11,18 @@ const mockExams = [
   { id: "mock-1", title: "Baseline Readiness", description: "Best for first-time assessment", questions: 185, hours: 4, price: "$49.99", color: "text-green-600", dot: "bg-green-500" },
   { id: "mock-2", title: "Progress Checkpoint", description: "Measure improvement", questions: 185, hours: 4, price: "$59.99", color: "text-yellow-600", dot: "bg-yellow-500" },
   { id: "mock-3", title: "Final Readiness", description: "Closest to exam day", questions: 185, hours: 4, price: "$69.99", color: "text-red-600", dot: "bg-red-500" },
-  { id: "mock-4", title: "Philosophical Underpinnings", description: "Focus on foundational concepts", questions: 50, hours: 1, price: "$19.99", color: "text-blue-600", dot: "bg-blue-500" },
-  { id: "mock-5", title: "Concepts and Principles", description: "Deep dive into core principles", questions: 85, hours: 2, price: "$29.99", color: "text-indigo-600", dot: "bg-indigo-500" },
-  { id: "mock-6", title: "Measurement & Data Display", description: "Mastering graphs and data interpretation", questions: 60, hours: 1.5, price: "$24.99", color: "text-purple-600", dot: "bg-purple-500" },
-  { id: "mock-7", title: "Experimental Design", description: "Single-subject design mastery", questions: 60, hours: 1.5, price: "$24.99", color: "text-pink-600", dot: "bg-pink-500" },
-  { id: "mock-8", title: "Ethics Code Mastery", description: "Ethics Code for Behavior Analysts", questions: 75, hours: 1.5, price: "$29.99", color: "text-rose-600", dot: "bg-rose-500" },
-  { id: "mock-9", title: "Behavior Assessment", description: "FBA and preference assessments", questions: 70, hours: 1.5, price: "$24.99", color: "text-orange-600", dot: "bg-orange-500" },
-  { id: "mock-10", title: "Behavior-Change Procedures", description: "Intervention and strategies", questions: 100, hours: 2, price: "$34.99", color: "text-teal-600", dot: "bg-teal-500" },
-  { id: "mock-11", title: "Selecting Interventions", description: "Client-centered intervention planning", questions: 65, hours: 1.5, price: "$24.99", color: "text-cyan-600", dot: "bg-cyan-500" },
-  { id: "mock-12", title: "Personnel Supervision", description: "Management and supervision standards", questions: 50, hours: 1, price: "$19.99", color: "text-sky-600", dot: "bg-sky-500" },
-  { id: "mock-13", title: "Section A-D Intensive", description: "Mid-level cumulative review", questions: 120, hours: 2.5, price: "$39.99", color: "text-emerald-600", dot: "bg-emerald-500" },
-  { id: "mock-14", title: "Section E-I Intensive", description: "Advanced cumulative review", questions: 120, hours: 2.5, price: "$39.99", color: "text-fuchsia-600", dot: "bg-fuchsia-500" },
-  { id: "mock-15", title: "Comprehensive Mini-Mock", description: "Half-length full spectrum test", questions: 90, hours: 2, price: "$34.99", color: "text-violet-600", dot: "bg-violet-500" }
+  { id: "mock-4", title: "Philosophical Underpinnings", description: "Focus on foundational concepts", questions: 185, hours: 4, price: "$19.99", color: "text-blue-600", dot: "bg-blue-500" },
+  { id: "mock-5", title: "Concepts and Principles", description: "Deep dive into core principles", questions: 185, hours: 4, price: "$29.99", color: "text-indigo-600", dot: "bg-indigo-500" },
+  { id: "mock-6", title: "Measurement & Data Display", description: "Mastering graphs and data interpretation", questions: 185, hours: 4, price: "$24.99", color: "text-purple-600", dot: "bg-purple-500" },
+  { id: "mock-7", title: "Experimental Design", description: "Single-subject design mastery", questions: 185, hours: 4, price: "$24.99", color: "text-pink-600", dot: "bg-pink-500" },
+  { id: "mock-8", title: "Ethics Code Mastery", description: "Ethics Code for Behavior Analysts", questions: 185, hours: 4, price: "$29.99", color: "text-rose-600", dot: "bg-rose-500" },
+  { id: "mock-9", title: "Behavior Assessment", description: "FBA and preference assessments", questions: 185, hours: 4, price: "$24.99", color: "text-orange-600", dot: "bg-orange-500" },
+  { id: "mock-10", title: "Behavior-Change Procedures", description: "Intervention and strategies", questions: 185, hours: 4, price: "$34.99", color: "text-teal-600", dot: "bg-teal-500" },
+  { id: "mock-11", title: "Selecting Interventions", description: "Client-centered intervention planning", questions: 185, hours: 4, price: "$24.99", color: "text-cyan-600", dot: "bg-cyan-500" },
+  { id: "mock-12", title: "Personnel Supervision", description: "Management and supervision standards", questions: 185, hours: 4, price: "$19.99", color: "text-sky-600", dot: "bg-sky-500" },
+  { id: "mock-13", title: "Section A-D Intensive", description: "Mid-level cumulative review", questions: 185, hours: 4, price: "$39.99", color: "text-emerald-600", dot: "bg-emerald-500" },
+  { id: "mock-14", title: "Section E-I Intensive", description: "Advanced cumulative review", questions: 185, hours: 4, price: "$39.99", color: "text-fuchsia-600", dot: "bg-fuchsia-500" },
+  { id: "mock-15", title: "Comprehensive Mini-Mock", description: "Half-length full spectrum test", questions: 185, hours: 4, price: "$34.99", color: "text-violet-600", dot: "bg-violet-500" }
 ];
 
 const initialMyMockExams = [
@@ -38,7 +38,6 @@ export default function MockExamPage() {
   const [selectedExamId, setSelectedExamId] = useState<string | null>(null);
   const [activeDropdownId, setActiveDropdownId] = useState<string | null>(null);
   const [platform, setPlatform] = useState<"ios" | "android">("ios");
-  const [viewMode, setViewMode] = useState<"MY_EXAMS" | "MARKETPLACE">("MY_EXAMS");
   
   const [cartItems, setCartItems] = useState<any[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -51,6 +50,12 @@ export default function MockExamPage() {
   const [isWarningOpen, setIsWarningOpen] = useState(false);
   const [startExamData, setStartExamData] = useState<any>(null);
   const [agreed, setAgreed] = useState(false);
+
+  const [mockExamTab, setMockExamTab] = useState<"MY_EXAMS" | "PURCHASE">("MY_EXAMS");
+
+  const handleTabToggle = () => {
+    setMockExamTab(prev => prev === "MY_EXAMS" ? "PURCHASE" : "MY_EXAMS");
+  };
 
   useEffect(() => {
     const savedExams = localStorage.getItem("purchasedMockExams");
@@ -160,60 +165,45 @@ export default function MockExamPage() {
       {/* Main Scrollable Content */}
       <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-4 pb-24">
         
-        {/* View Mode Toggle */}
-        <div className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px] shrink-0">
-          <div className="p-3 border-b border-gray-100 flex justify-between items-center">
-            <h3 className="text-[15px] font-medium text-secondary">Mock Exams Hub</h3>
-            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-              {viewMode === "MY_EXAMS" ? `${allMyMockExams.length} Exams Owned` : `${availableExams.length} Available`}
-            </span>
+        {/* Tab Toggle Card */}
+        <div className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px]">
+          <div className="p-3 border-b border-gray-100">
+            <h3 className="text-[15px] font-medium text-secondary">My Exams & Exam Store:</h3>
           </div>
           <div className="p-4 flex items-center justify-center gap-4">
-            <span style={{width:"120px", textAlign:"right"}}
-              className={`text-sm font-medium cursor-pointer transition-colors ${viewMode === "MY_EXAMS" ? "text-secondary" : "text-gray-400"}`}
-              onClick={() => setViewMode("MY_EXAMS")}
-            >
+            <span className={`text-sm font-medium ${mockExamTab === "MY_EXAMS" ? "text-secondary" : "text-gray-400"}`}>
               MY EXAMS
             </span>
             
             <div 
-              className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors ${viewMode === "MARKETPLACE" ? "bg-secondary" : "bg-gray-200"}`}
-              onClick={() => setViewMode(viewMode === "MY_EXAMS" ? "MARKETPLACE" : "MY_EXAMS")}
+              className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors ${mockExamTab === "PURCHASE" ? "bg-secondary" : "bg-gray-200"}`}
+              onClick={handleTabToggle}
             >
-              <div className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${viewMode === "MARKETPLACE" ? "translate-x-6" : ""}`} />
+              <div className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${mockExamTab === "PURCHASE" ? "translate-x-6" : ""}`} />
             </div>
 
-            <span style={{width:"120px"}}
-              className={`text-sm font-medium cursor-pointer transition-colors ${viewMode === "MARKETPLACE" ? "text-secondary" : "text-gray-400"}`}
-              onClick={() => setViewMode("MARKETPLACE")}
-            >
-              MARKETPLACE
+            <span className={`text-sm font-medium ${mockExamTab === "PURCHASE" ? "text-secondary" : "text-gray-400"}`}>
+              PURCHASE
             </span>
           </div>
         </div>
 
-        {/* My Mock Exams */}
-        {viewMode === "MY_EXAMS" && (
+        {mockExamTab === "MY_EXAMS" ? (
           <div className="flex flex-col gap-3">
+            {/* My Mock Exams */}
             {allMyMockExams.length === 0 && (
               <div className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px] p-8 text-center flex flex-col items-center gap-3">
                 <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-2">
                   <RotateCw className="w-6 h-6 text-gray-400" />
                 </div>
                 <h3 className="text-[15px] font-medium text-secondary">No Exams Yet</h3>
-                <p className="text-sm text-gray-500">You haven't purchased any mock exams yet.</p>
-                <button 
-                  onClick={() => setViewMode("MARKETPLACE")}
-                  className="mt-2 bg-secondary text-white px-4 py-2 rounded-[3px] text-sm font-medium hover:bg-secondary/90 transition-colors shadow-sm"
-                >
-                  Browse Marketplace
-                </button>
+                <p className="text-sm text-gray-500">You haven't purchased any mock exams yet. Browse the available exams below.</p>
               </div>
             )}
             {allMyMockExams.map((ce, idx) => (
               <div key={idx} className="relative">
                   {ce.score ? (
-                    <Link href="/stats" className="block">
+                    <Link href="/stats?tab=mock_exam" className="block">
                       <div className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px] flex flex-col cursor-pointer transition-all hover:border-primary/40">
                         <div className="p-4 flex justify-between items-start border-b border-gray-50">
                           <div>
@@ -313,12 +303,10 @@ export default function MockExamPage() {
                   )}
                 </div>
               ))}
-            </div>
-        )}
-
-        {/* Marketplace */}
-        {viewMode === "MARKETPLACE" && (
+          </div>
+        ) : (
           <div className="flex flex-col gap-3">
+            {/* Available Exams */}
             {availableExams.map(exam => (
               <div 
                 key={exam.id} 
@@ -366,7 +354,7 @@ export default function MockExamPage() {
                     {cartItems.some(item => item.id === exam.id) ? (
                       <><Check className="w-4 h-4" /> Added to Cart</>
                     ) : (
-                      <><ShoppingCart className="w-4 h-4" /> Add to Cart</>
+                      <><ShoppingCart className="w-4 h-4" /> Purchase Mock Exam</>
                     )}
                   </button>
                 </div>
@@ -437,7 +425,7 @@ export default function MockExamPage() {
                 }}
                 className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-xl transition-all shadow-md shadow-primary/20 flex items-center justify-center gap-2"
               >
-                {cartItems.some(item => item.id === detailsExam.id) ? "View in Cart" : "Add to Cart"}
+                {cartItems.some(item => item.id === detailsExam.id) ? "View in Cart" : "Purchase Mock Exam"}
               </button>
             </div>
           </div>
@@ -450,36 +438,38 @@ export default function MockExamPage() {
         return (
           <div className="absolute inset-0 z-50 flex justify-end">
             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsCartOpen(false)} />
-            <div className="relative w-full sm:w-[400px] h-full bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
-              <div className="shrink-0 p-4 border-b flex justify-between items-center bg-gray-50">
-                <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                  <ShoppingCart className="w-6 h-6" />
-                  Your Cart
-                </h2>
-                <button onClick={() => setIsCartOpen(false)} className="p-1.5 bg-gray-200/50 hover:bg-gray-200 rounded-full text-gray-600 transition-colors">
-                  <X className="w-5 h-5" />
+            <div className="relative w-full sm:w-[400px] h-full bg-gray-50 flex flex-col animate-in slide-in-from-right duration-300">
+              
+              {/* Header */}
+              <div className="h-[56px] shrink-0 bg-primary flex justify-between items-center px-4 z-10 shadow-sm relative">
+                <div className="flex items-center gap-2 text-white">
+                  <ShoppingCart className="w-5 h-5" />
+                  <h2 className="text-lg font-normal tracking-wide ml-0.5">Your Cart</h2>
+                </div>
+                <button onClick={() => setIsCartOpen(false)} className="text-white hover:bg-white/10 p-1.5 -mr-1.5 rounded-full transition-colors">
+                  <X className="w-5 h-5" strokeWidth={2} />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
+              <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-3">
                 {cartItems.length === 0 ? (
                   <div className="flex-1 flex flex-col items-center justify-center text-center px-6 opacity-60 h-full mt-20">
                     <ShoppingCart className="w-20 h-20 text-gray-400 mb-4" strokeWidth={1.5} />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Your cart is empty</h3>
+                    <h3 className="text-[15px] font-medium text-secondary mb-1">Your cart is empty</h3>
                     <p className="text-sm text-gray-500">Add mock exams to your cart to purchase them.</p>
                   </div>
                 ) : (
                   cartItems.map((item, idx) => (
-                    <div key={idx} className="bg-white border border-gray-200 rounded-xl p-3 flex justify-between items-center gap-3">
+                    <div key={idx} className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px] p-3 flex justify-between items-center gap-3">
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-gray-900 truncate">{item.title}</h4>
+                        <h4 className="font-medium text-[15px] text-secondary truncate">{item.title}</h4>
                         <div className="text-xs text-gray-500 mt-0.5">{item.questions} Qs • {item.hours} Hrs</div>
                       </div>
                       <div className="flex items-center gap-3 shrink-0">
-                        <span className="font-bold text-primary">{item.price}</span>
+                        <span className="font-bold text-[15px] text-primary bg-primary/5 px-2 py-0.5 rounded">{item.price}</span>
                         <button 
                           onClick={() => updateCart(cartItems.filter(ci => ci.id !== item.id))}
-                          className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-[3px] transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -490,14 +480,14 @@ export default function MockExamPage() {
               </div>
 
               {cartItems.length > 0 && (
-                <div className="shrink-0 border-t bg-gray-50 p-5 space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 font-medium">Subtotal</span>
-                    <span className="text-xl font-bold text-gray-900">${cartTotal.toFixed(2)}</span>
+                <div className="shrink-0 bg-white border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.03)] p-4 space-y-4">
+                  <div className="flex justify-between items-center px-1">
+                    <span className="text-[15px] text-secondary font-medium">Subtotal</span>
+                    <span className="text-xl font-bold text-primary">${cartTotal.toFixed(2)}</span>
                   </div>
                   <button 
                     onClick={() => setIsCheckoutOpen(true)}
-                    className="w-full bg-black hover:bg-gray-900 text-white font-bold py-4 rounded-xl transition-all shadow-xl shadow-black/10 flex justify-center items-center gap-2"
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-medium text-lg py-3.5 rounded-[4px] transition-colors shadow-sm"
                   >
                     Proceed to Checkout
                   </button>
@@ -535,51 +525,69 @@ export default function MockExamPage() {
 
       {/* Exam-Day Warning Modal */}
       {isWarningOpen && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" onClick={() => setIsWarningOpen(false)} />
-          <div className="relative bg-white rounded-xl w-full max-w-sm shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-            <div className="bg-primary p-4 text-center">
-              <h2 className="text-xl font-bold text-white">Before You Begin</h2>
+        <div className="absolute inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsWarningOpen(false)} />
+          <div className="relative bg-white w-full sm:max-w-[400px] sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-full sm:zoom-in-95 duration-300 max-h-[90vh]">
+            <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+              <h2 className="text-[17px] font-semibold text-secondary">Ready to start?</h2>
+              <button onClick={() => setIsWarningOpen(false)} className="p-1.5 bg-gray-200/50 hover:bg-gray-200 rounded-full text-gray-500 transition-colors">
+                <X className="w-4 h-4" />
+              </button>
             </div>
             
-            <div className="p-6 flex flex-col gap-4">
-              <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg flex gap-3 text-yellow-800 text-sm">
-                <Info className="w-5 h-5 shrink-0" />
-                <p>You are about to start <strong>{startExamData?.title}</strong>. Please confirm you understand the exam conditions.</p>
+            <div className="p-6 flex flex-col gap-6 overflow-y-auto">
+              <div className="text-center space-y-1.5">
+                <h3 className="font-semibold text-primary text-[19px]">{startExamData?.title}</h3>
+                <p className="text-[15px] text-gray-500">
+                  This mock exam is designed to simulate the real testing experience.
+                </p>
               </div>
 
-              <div className="flex flex-col gap-3 mt-2">
-                {[
-                  "I understand this is a 4-hour timed exam",
-                  "I understand the exam cannot be paused",
-                  "I understand results assess readiness",
-                  "I understand purchases are non-refundable",
-                  "I understand exam content is confidential"
-                ].map((req, idx) => (
-                  <label key={idx} className="flex items-start gap-3 cursor-pointer group">
-                    <div className="relative flex items-center justify-center w-5 h-5 mt-0.5 shrink-0">
-                      <input 
-                        type="checkbox" 
-                        className="opacity-0 absolute" 
-                        checked={agreed} 
-                        onChange={(e) => setAgreed(e.target.checked)} 
-                      />
-                      <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${agreed ? "bg-primary border-primary" : "border-gray-300 group-hover:border-primary/50"}`}>
-                        {agreed && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
-                      </div>
-                    </div>
-                    <span className="text-sm text-gray-700 leading-snug">{req}</span>
-                  </label>
-                ))}
+              <div className="flex bg-gray-50 rounded-xl py-4 justify-center divide-x divide-gray-200 border border-gray-100">
+                <div className="flex flex-col items-center px-6">
+                  <span className="text-2xl font-bold text-secondary">4</span>
+                  <span className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mt-1">Hours</span>
+                </div>
+                <div className="flex flex-col items-center px-6">
+                  <span className="text-2xl font-bold text-secondary">185</span>
+                  <span className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mt-1">Questions</span>
+                </div>
               </div>
 
-              <button 
-                disabled={!agreed}
-                onClick={handleAgreeAndContinue}
-                className="w-full mt-4 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded transition-all active:scale-[0.98]"
-              >
-                Agree & Continue
-              </button>
+              <div className="space-y-3.5">
+                
+                <div className="flex gap-3 items-start">
+                  <div className="bg-green-100 p-1 rounded-full shrink-0 mt-0.5">
+                    <Check className="w-3.5 h-3.5 text-green-600" strokeWidth={3} />
+                  </div>
+                  <p className="text-[14px] text-gray-600 leading-snug">
+                    <strong className="text-gray-800 font-medium">Clear your schedule.</strong> Make sure you have 4 uninterrupted hours in a quiet space.
+                  </p>
+                </div>
+                <div className="flex gap-3 items-start">
+                  <div className="bg-green-100 p-1 rounded-full shrink-0 mt-0.5">
+                    <Check className="w-3.5 h-3.5 text-green-600" strokeWidth={3} />
+                  </div>
+                  <p className="text-[14px] text-gray-600 leading-snug">
+                    <strong className="text-gray-800 font-medium">Instant feedback.</strong> Results and detailed domain analytics will be ready upon completion.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2.5 pt-2">
+                <button 
+                  onClick={handleAgreeAndContinue}
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3.5 rounded-[8px] transition-all shadow-sm text-[15px]"
+                >
+                  Start Exam Now
+                </button>
+                <button 
+                  onClick={() => setIsWarningOpen(false)}
+                  className="w-full py-3.5 rounded-[8px] font-medium text-gray-500 hover:text-gray-700 bg-white hover:bg-gray-50 transition-colors text-[15px]"
+                >
+                  Maybe Later
+                </button>
+              </div>
             </div>
           </div>
         </div>
