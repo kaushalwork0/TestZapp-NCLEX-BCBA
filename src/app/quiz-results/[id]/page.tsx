@@ -191,7 +191,7 @@ export default function QuizResultsPage() {
           </div>
 
           <div className="flex flex-col gap-4">
-            {data.topics.map((topic, i) => {
+            {data.topics.map((topic: { name: string; correct: number; incorrect: number; remaining: number }, i: number) => {
               const topicTotal = topic.correct + topic.incorrect + topic.remaining;
               // If topicTotal is 0, the bar is entirely grey. If there's 1 incorrect, it's 100% red.
               const pCorrect = getPercentage(topic.correct, topicTotal);
