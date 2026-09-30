@@ -150,9 +150,9 @@ export default function StatsPage() {
       <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-4 pb-24 scrollbar-hide">
         
         {/* Tab Toggle Card */}
-        <div className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px]">
+        {/* <div className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px]">
           <div className="p-3 border-b border-gray-100">
-            <h3 className="text-[15px] font-medium text-secondary">BCBA ABA Exam:</h3>
+            <h3 className="text-[15px] font-medium text-secondary">CCM Exam Practice Test:</h3>
           </div>
           <div className="p-4 flex items-center justify-center gap-4">
             <span className={`text-[13px] font-medium ${statsTab === "PRACTICE_EXAM" ? "text-secondary" : "text-gray-400"}`}>
@@ -170,16 +170,16 @@ export default function StatsPage() {
               MOCK
             </span>
           </div>
-        </div>
+        </div> */}
 
         {statsTab === "PRACTICE_EXAM" ? (
           <>
             {/* Filter Questions & Diagnostics */}
             <div className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px] p-4">
-              <div className="flex items-center gap-2 mb-4">
+              {/* <div className="flex items-center gap-2 mb-4">
                 <Filter className="w-4 h-4 text-secondary" />
                 <h3 className="text-[15px] font-medium text-slate-700">Filter Questions</h3>
-              </div>
+              </div> */}
               <div className="flex gap-3">
                 <BottomSheetSelect 
                   label="Category / Domain"

@@ -133,51 +133,43 @@ export default function Home() {
         {/* Badge overlay */}
         <div className="relative mt-4  flex flex-col items-center z-20 shrink-0">
           <img 
-            src="/BCBA%20app%20icon.png" 
-            alt="BCBA ABA Exam Practice Test" 
+            src="/CCM Exam prep.jpg" 
+            alt="CCM Exam Practice Test" 
             className="w-[100px] h-[100px] rounded-full shadow-xl border-[3px] border-white object-cover bg-white"
           />
-          <h2 className="mt-5 text-[22px] font-medium text-gray-700 text-center px-4 leading-tight">BCBA ABA Exam Practice Test</h2>
-          <span className="text-sm text-gray-400 mt-2">Skyscape Team</span>
+          <h2 className="mt-5 text-[22px] font-medium text-gray-700 text-center px-4 leading-tight">CCM Exam Practice Test</h2>
+          <span className="text-sm text-gray-400 mt-2">Deanna Cooper Gillingham, RN, CCM</span>
         </div>
 
         {/* Stats */}
         <div className="px-4 mt-4 shrink-0">
-          <div className="grid grid-cols-4 gap-2.5">
-            <StatBox icon={<Check className="w-7 h-7 text-[#65a30d]" strokeWidth={2.5} />} title="0" subtitle="CORRECT" />
-            <StatBox icon={<X className="w-7 h-7 text-[#dc2626]" strokeWidth={2.5} />} title="0" subtitle="INCORRECT" />
-            <StatBox icon={<HelpCircle className="w-7 h-7 text-[#d97706]" strokeWidth={2.5} />} title="2579" subtitle="UNATTEMPTED" />
-            
-            <Link href="/stats">
-              <StatBox 
-                customTitle={
-                  <div className="h-7 flex items-end gap-[3px] justify-center pt-1">
-                    <div className="w-1.5 h-4 bg-primary rounded-t-sm" />
-                    <div className="w-1.5 h-6 bg-primary rounded-t-sm" />
-                    <div className="w-1.5 h-3 bg-primary rounded-t-sm" />
-                  </div>
-                } 
-                subtitle="My stats" 
-                titleColor="text-primary" 
-                subtitleColor="text-primary underline decoration-primary/30 underline-offset-2" 
-              />
-            </Link>
+          <div className="grid grid-cols-3 gap-2.5">
+            <StatBox icon={<Check className="w-7 h-7 text-[#65a30d]" strokeWidth={2.5} />} title="6" subtitle="CORRECT" />
+            <StatBox icon={<X className="w-7 h-7 text-[#dc2626]" strokeWidth={2.5} />} title="26" subtitle="INCORRECT" />
+            <StatBox icon={<HelpCircle className="w-7 h-7 text-[#d97706]" strokeWidth={2.5} />} title="297" subtitle="UNATTEMPTED" />
           </div>
         </div>
 
-        {/* Main Grid - Row 1 (3 items) */}
+        {/* Main Grid - Row 1 & 2 (6 items) */}
         <div className="px-4 mt-4 grid grid-cols-3 gap-3 shrink-0">
           <GridBox href="/study" icon={<img src="/study.png" alt="Study" className="w-10 h-10 object-contain" />} title="Study" />
           <GridBox href="/quiz" icon={<img src="/quiz.png" alt="Quiz" className="w-10 h-10 object-contain" />} title="Quiz" />
           <GridBox icon={<img src="/bookmark.png" alt="Bookmark" className="w-10 h-10 object-contain" />} title="Bookmark" />
-        </div>
-
-        {/* Main Grid - Row 2 (4 items) */}
-        <div className="px-4 mt-3 grid grid-cols-4 gap-3 shrink-0">
           <GridBox icon={<img src="/resources.png" alt="Resources" className="w-10 h-10 object-contain" />} title="Resources" />
           <GridBox icon={<img src="/study%20goal.png" alt="Study Goal" className="w-10 h-10 object-contain" />} title="Study Goal" />
-          <GridBox icon={<img src="/querious%20ai.png" alt="QueriousAI" className="w-10 h-10 object-contain opacity-40 grayscale" />} title="QueriousAI" disabled subtitle="Not available" />
-          <GridBox href="/mock-exam" icon={<FileText className="w-10 h-10 text-primary" strokeWidth={1.5} />} title="Mock Exam" />
+          <GridBox 
+            href="/stats" 
+            icon={
+              <div className="w-10 h-10 flex items-center justify-center border-[2px] border-primary rounded-lg text-primary">
+                <div className="flex items-end gap-[3px] h-[18px]">
+                  <div className="w-[3px] h-[10px] bg-primary rounded-t-sm" />
+                  <div className="w-[3px] h-[18px] bg-primary rounded-t-sm" />
+                  <div className="w-[3px] h-[14px] bg-primary rounded-t-sm" />
+                </div>
+              </div>
+            }
+            title="My stats" 
+          />
         </div>
 
         {/* Footer */}
