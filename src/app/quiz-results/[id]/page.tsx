@@ -68,9 +68,11 @@ export default function QuizResultsPage() {
     return total > 0 ? (value / total) * 100 : 0;
   };
 
-  const circumference = 2 * Math.PI * 35; // ~220
+  const radius = 40;
+  const circumference = 2 * Math.PI * radius;
   const correctLength = (data.correct / data.total) * circumference;
   const incorrectLength = (data.incorrect / data.total) * circumference;
+  const remainingLength = (data.remaining / data.total) * circumference;
 
   return (
     <div className="relative h-full overflow-hidden flex flex-col bg-white">
@@ -84,7 +86,7 @@ export default function QuizResultsPage() {
 
       <div className="flex-1 overflow-y-auto pb-8">
         {/* Toggle */}
-        <div className="flex justify-end items-center px-4 py-4 gap-2 text-primary font-medium text-[15px]">
+        <div className="flex justify-end items-center px-4 py-2 gap-2 text-primary font-medium text-[15px]">
           <span className={!showPercentages ? "opacity-100" : "opacity-40"}>0</span>
           <button 
             onClick={() => setShowPercentages(!showPercentages)}
@@ -97,33 +99,56 @@ export default function QuizResultsPage() {
         </div>
 
         {/* Chart */}
-        <div className="flex flex-col items-center justify-center my-2">
-          <div className="relative w-56 h-56 flex items-center justify-center">
-             <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
+        <div className="flex flex-col items-center justify-center">
+          <div className="relative w-32 h-32 mx-auto mb-6">
+             <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                 {/* Remaining (grey) */}
-                <circle cx="50" cy="50" r="35" fill="none" stroke="#c1c1c1" strokeWidth="22" />
-                {/* Incorrect (red) */}
-                <circle cx="50" cy="50" r="35" fill="none" stroke="#d9534f" strokeWidth="22" strokeDasharray={`${incorrectLength} ${circumference}`} strokeDashoffset="0" />
+                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#F2F4F6" strokeWidth="12" />
                 {/* Correct (green) */}
-                <circle cx="50" cy="50" r="35" fill="none" stroke="#5cb85c" strokeWidth="22" strokeDasharray={`${correctLength} ${circumference}`} strokeDashoffset={`-${incorrectLength}`} />
+                <circle 
+                  cx="50" cy="50" r="40" 
+                  fill="transparent" 
+                  stroke="currentColor" 
+                  strokeWidth="12" 
+                  strokeDasharray={`${correctLength} ${circumference}`}
+                  strokeDashoffset={0} 
+                  className="text-[#5cb85c] transition-all duration-1000 ease-out" 
+                />
+                {/* Incorrect (red) */}
+                <circle 
+                  cx="50" cy="50" r="40" 
+                  fill="transparent" 
+                  stroke="currentColor" 
+                  strokeWidth="12" 
+                  strokeDasharray={`${incorrectLength} ${circumference}`}
+                  strokeDashoffset={-correctLength}
+                  className="text-[#d9534f] transition-all duration-1000 ease-out" 
+                />
+                {/* Remaining (actual) if any */}
+                <circle 
+                  cx="50" cy="50" r="40" 
+                  fill="transparent" 
+                  stroke="currentColor" 
+                  strokeWidth="12" 
+                  strokeDasharray={`${remainingLength} ${circumference}`}
+                  strokeDashoffset={-(correctLength + incorrectLength)}
+                  className="text-[#c1c1c1] transition-all duration-1000 ease-out" 
+                />
              </svg>
-             <div className="absolute inset-0 m-[22%] bg-white rounded-full flex flex-col items-center justify-center border-[5px] border-[#e9e9e9]">
-               <span className="text-secondary text-[15px]">Correct</span>
-               <span className="text-secondary text-[15px] mt-0.5">
-                 {showPercentages ? getPercentage(data.correct, data.total).toFixed(1) + '%' : data.correct.toFixed(1)}
+             <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+               <span className="text-2xl font-bold text-slate-700 leading-none mb-1">
+                 {showPercentages ? getPercentage(data.correct, data.total).toFixed(1) + '%' : data.correct.toFixed(0)}
+               </span>
+               <span className="text-[11px] text-slate-400 font-medium border-t border-gray-100 pt-1 px-2">
+                 Correct
                </span>
              </div>
-             
-             {/* Text labels on the chart representing the screenshot numbers */}
-             <div className="absolute top-[18%] left-[45%] text-black text-[12px] font-medium z-10">{data.correct.toFixed(1)}</div>
-             <div className="absolute top-[18%] right-[32%] text-black text-[12px] font-medium z-10">{data.incorrect.toFixed(1)}</div>
-             <div className="absolute bottom-[12%] text-black text-[14px] font-medium z-10">{data.remaining.toFixed(1)}</div>
           </div>
           
-          <div className="flex gap-4 mt-6 text-[10.5px] font-medium text-[#4a4a4a]">
-            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 bg-[#5cb85c]" /> Correct</div>
-            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 bg-[#d9534f]" /> Incorrect</div>
-            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 bg-[#c1c1c1]" /> Remaining</div>
+          <div className="flex gap-4 text-[10.5px] font-medium text-[#4a4a4a]">
+            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#5cb85c]" /> Correct</div>
+            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#d9534f]" /> Incorrect</div>
+            <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#c1c1c1]" /> Remaining</div>
           </div>
         </div>
 
@@ -138,7 +163,7 @@ export default function QuizResultsPage() {
             <span className="text-[13px] text-secondary">Attempted</span>
           </div>
           <div className="flex-1 flex flex-col gap-1.5">
-            <span className="text-[16px] font-semibold text-primary">{data.timeSpent}</span>
+            <span className="text-[16px] font-semibold">{data.timeSpent}</span>
             <span className="text-[13px] text-secondary">Time Spent</span>
           </div>
         </div>
@@ -148,7 +173,7 @@ export default function QuizResultsPage() {
           {data.incorrect > 0 ? (
             <div 
               onClick={() => router.push('/practice-incorrect')}
-              className="bg-gradient-to-r from-[#ffeef0] to-[#fff5f6] border border-[#ffc4cc] rounded-[10px] p-4 flex items-center justify-between cursor-pointer shadow-sm shadow-primary/5 hover:shadow active:scale-[0.99] transition-all group"
+              className="bg-gradient-to-r from-[#ffeef0] to-[#fff5f6] border border-[#ffc4cc] rounded-[4px] p-2 my-4 flex items-center justify-between cursor-pointer shadow-xsm shadow-primary/5 hover:shadow active:scale-[0.99] transition-all group"
             >
               <div className="flex flex-col">
                 <span className="text-[15.5px] font-bold text-primary tracking-tight">Practice Weak Areas</span>
@@ -190,7 +215,7 @@ export default function QuizResultsPage() {
             <ChevronDown className="w-5 h-5 text-secondary" />
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
             {data.topics.map((topic: { name: string; correct: number; incorrect: number; remaining: number }, i: number) => {
               const topicTotal = topic.correct + topic.incorrect + topic.remaining;
               // If topicTotal is 0, the bar is entirely grey. If there's 1 incorrect, it's 100% red.
@@ -201,15 +226,14 @@ export default function QuizResultsPage() {
               return (
                 <div 
                   key={i} 
-                  className="flex flex-col gap-3 bg-white border border-gray-200 rounded-[8px] p-3.5 shadow-sm hover:border-gray-300 hover:shadow-md active:scale-[0.99] cursor-pointer transition-all"
+                  className="flex flex-col gap-3 bg-white border border-gray-200 rounded-[4px] p-3.5 shadow-xsm hover:border-gray-300 hover:shadow-sm active:scale-[0.99] cursor-pointer transition-all"
                 >
                   <div className="flex justify-between items-center text-[13.5px]">
                     <span className="text-[#64748b] font-medium">{topic.name}</span>
                     <div className="flex items-center gap-3">
                       <span className="text-[#64748b]">
                         (<span className="text-[#5cb85c]">{topic.correct}</span>/
-                        <span className="text-[#d9534f]">{topic.incorrect}</span>/
-                        <span className="text-[#ffb100]">{topic.remaining}</span>)
+                        <span className="text-[#d9534f]">{topic.incorrect}</span>)
                       </span>
                       <span className="text-[#5cb85c] w-12 text-right">{pCorrect.toFixed(2)}%</span>
                       <ChevronLeft className="w-4 h-4 text-gray-400 rotate-180 -mr-1" />

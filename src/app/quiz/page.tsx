@@ -153,7 +153,7 @@ export default function QuizDashboardPage() {
                     </div>
                     
                     <div className="flex flex-col items-end">
-                      <span className={`text-[28px] font-bold tracking-tight leading-none ${quiz.score === 100 ? 'text-[#34C759]' : quiz.score < 60 ? 'text-orange-500' : 'text-primary'}`}>
+                      <span className="text-[28px] font-bold tracking-tight leading-none text-primary">
                         {quiz.score.toFixed(1)}%
                       </span>
                       <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-1.5">Score</span>

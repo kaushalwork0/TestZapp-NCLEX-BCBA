@@ -209,14 +209,32 @@ export default function StatsPage() {
                     fill="transparent" 
                     stroke="currentColor" 
                     strokeWidth="12" 
-                    strokeDasharray={2 * Math.PI * 40} 
-                    strokeDashoffset={(2 * Math.PI * 40) * (1 - (250/3089))} 
-                    className="text-success transition-all duration-1000 ease-out" 
+                    strokeDasharray={`${(120/3089) * (2 * Math.PI * 40)} ${2 * Math.PI * 40}`}
+                    strokeDashoffset={0} 
+                    className="text-green-500 transition-all duration-1000 ease-out" 
+                  />
+                  <circle 
+                    cx="50" cy="50" r="40" 
+                    fill="transparent" 
+                    stroke="currentColor" 
+                    strokeWidth="12" 
+                    strokeDasharray={`${(45/3089) * (2 * Math.PI * 40)} ${2 * Math.PI * 40}`}
+                    strokeDashoffset={-((120/3089) * (2 * Math.PI * 40))}
+                    className="text-orange-400 transition-all duration-1000 ease-out" 
+                  />
+                  <circle 
+                    cx="50" cy="50" r="40" 
+                    fill="transparent" 
+                    stroke="currentColor" 
+                    strokeWidth="12" 
+                    strokeDasharray={`${(85/3089) * (2 * Math.PI * 40)} ${2 * Math.PI * 40}`}
+                    strokeDashoffset={-(((120+45)/3089) * (2 * Math.PI * 40))}
+                    className="text-red-500 transition-all duration-1000 ease-out" 
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
                   <span className="text-2xl font-bold text-slate-700 leading-none mb-1">250</span>
-                  <span className="text-[11px] text-slate-400 font-medium border-t border-gray-100 pt-1 w-16">/ 3089</span>
+                  <span className="text-[11px] text-slate-400 font-medium border-t border-gray-100 pt-1 px-2">of 3089</span>
                 </div>
               </div>
 
@@ -254,10 +272,13 @@ export default function StatsPage() {
               <h3 className="text-[16px] font-medium text-slate-700">Progress Breakdown</h3>
               <p className="text-[12px] text-slate-400 mt-0.5 mb-5">Tap any category row to filter questions</p>
               
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-2">
                 {practiceStats.map((stat, idx) => (
-                  <div key={idx} className="flex flex-col gap-2 cursor-pointer group">
-                    <div className="flex items-center justify-between text-[13px]">
+                  <div 
+                    key={idx} 
+                    className="flex flex-col gap-3 bg-white border border-gray-100 rounded-[8px] p-3.5 shadow-xsm hover:border-gray-300 hover:shadow-md active:scale-[0.99] cursor-pointer transition-all group"
+                  >
+                    <div className="flex items-center justify-between text-[13.5px]">
                       <div className="flex items-center gap-2">
                         <div className={`w-2 h-2 rounded-full ${stat.color}`} />
                         <span className="text-slate-600 font-medium group-hover:text-slate-800 transition-colors">{stat.label}</span>
