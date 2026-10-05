@@ -100,7 +100,7 @@ export default function QuizResultsPage() {
 
         {/* Chart */}
         <div className="flex flex-col items-center justify-center">
-          <div className="relative w-32 h-32 mx-auto mb-6">
+          <div className="relative w-32 h-32 mx-auto mb-2">
              <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                 {/* Remaining (grey) */}
                 <circle cx="50" cy="50" r="40" fill="transparent" stroke="#F2F4F6" strokeWidth="12" />

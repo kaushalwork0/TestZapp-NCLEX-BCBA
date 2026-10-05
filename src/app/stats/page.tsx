@@ -84,7 +84,7 @@ export default function StatsPage() {
   const [subCategory, setSubCategory] = useState("All");
   
   const categoryOptions = [
-    "All", "Question Type", "NCLEX Category", "Content", "Concept", "Nursing Process", "QSEN", "Cognitive Level", "Activity Statement"
+    "All", "Question Type", "Domain"
   ];
   const subCategoryOptions = ["All"];
 
