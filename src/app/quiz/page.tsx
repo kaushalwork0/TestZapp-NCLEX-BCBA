@@ -11,7 +11,7 @@ export default function QuizDashboardPage() {
     {
       id: 1,
       name: 'Jul-09-2026 19:27:32',
-      mode: 'Study mode',
+      mode: 'Quiz mode',
       questions: 65,
     },
     {
@@ -36,7 +36,7 @@ export default function QuizDashboardPage() {
     {
       id: 2,
       name: 'Jul-07-2026 14:30:22',
-      mode: 'Study mode',
+      mode: 'Quiz mode',
       questions: 50,
       score: 100,
       incorrect: 0,

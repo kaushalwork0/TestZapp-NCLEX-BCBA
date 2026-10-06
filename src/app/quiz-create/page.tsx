@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export default function QuizCreatePage() {
   const router = useRouter();
-  const [quizMode, setQuizMode] = useState<"STUDY" | "EXAM">("STUDY");
+  const [quizMode, setQuizMode] = useState<"QUIZ" | "EXAM">("QUIZ");
   
   // Study Mode State
   const [answerMode, setAnswerMode] = useState<"AS_I_GO" | "AT_END">("AS_I_GO");
@@ -15,10 +15,10 @@ export default function QuizCreatePage() {
   const [timeLimit, setTimeLimit] = useState(5);
 
   const handleQuizModeToggle = () => {
-    if (quizMode === "STUDY") {
+    if (quizMode === "QUIZ") {
       setQuizMode("EXAM");
     } else {
-      setQuizMode("STUDY");
+      setQuizMode("QUIZ");
     }
   };
 
@@ -41,8 +41,8 @@ export default function QuizCreatePage() {
             <h3 className="text-[15px] font-medium text-secondary">Quiz Mode:</h3>
           </div>
           <div className="p-4 flex items-center justify-center gap-4">
-            <span className={`text-sm font-medium ${quizMode === "STUDY" ? "text-secondary" : "text-gray-400"}`}>
-              STUDY
+            <span className={`text-sm font-medium ${quizMode === "QUIZ" ? "text-secondary" : "text-gray-400"}`}>
+              QUIZ
             </span>
             
             <div 
@@ -64,7 +64,7 @@ export default function QuizCreatePage() {
             <h3 className="text-[15px] font-medium text-secondary">Answer Mode:</h3>
           </div>
           <div className="p-4 flex flex-col gap-3">
-            {quizMode === "STUDY" && (
+            {quizMode === "QUIZ" && (
               <label className="flex items-center gap-3 cursor-pointer">
                 <div className="relative flex items-center justify-center w-5 h-5">
                   <input type="radio" name="answerMode" className="opacity-0 absolute" checked={answerMode === "AS_I_GO"} onChange={() => setAnswerMode("AS_I_GO")} />
@@ -77,7 +77,7 @@ export default function QuizCreatePage() {
             )}
             <label className="flex items-center gap-3 cursor-pointer">
               <div className="relative flex items-center justify-center w-5 h-5">
-                <input type="radio" name="answerMode" className="opacity-0 absolute" checked={quizMode === "EXAM" || answerMode === "AT_END"} onChange={() => quizMode === "STUDY" && setAnswerMode("AT_END")} />
+                <input type="radio" name="answerMode" className="opacity-0 absolute" checked={quizMode === "EXAM" || answerMode === "AT_END"} onChange={() => quizMode === "QUIZ" && setAnswerMode("AT_END")} />
                 <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${quizMode === "EXAM" || answerMode === "AT_END" ? "border-secondary" : "border-gray-300"}`}>
                   {(quizMode === "EXAM" || answerMode === "AT_END") && <div className="w-2.5 h-2.5 rounded-full bg-secondary" />}
                 </div>
@@ -128,7 +128,7 @@ export default function QuizCreatePage() {
         </div>
 
         {/* Bottom Card depending on mode */}
-        {quizMode === "STUDY" ? (
+        {quizMode === "QUIZ" ? (
           <div className="bg-white border border-border-subtle shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px]">
             <div className="p-3 border-b border-gray-100">
               <h3 className="text-[15px] font-medium text-secondary">Number of Questions</h3>

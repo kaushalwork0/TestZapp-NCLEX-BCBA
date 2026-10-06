@@ -102,11 +102,11 @@ export default function StatsPage() {
   };
 
   const practiceStats = [
-    { label: "Correct on 1st Attempt", count: 120, total: 3089, color: "bg-green-500" },
-    { label: "Correct After Multiple Attempts", count: 45, total: 3089, color: "bg-orange-400" },
-    { label: "Incorrect Responses", count: 85, total: 3089, color: "bg-red-500" },
-    { label: "Skipped Questions", count: 15, total: 3089, color: "bg-slate-400" },
-    { label: "Unattempted Questions", count: 2824, total: 3089, color: "bg-blue-500" },
+    { label: "Correct", count: 120, total: 3089, color: "bg-green-500" },
+    { label: "Multiple Attempts", count: 45, total: 3089, color: "bg-orange-400" },
+    { label: "Incorrect", count: 85, total: 3089, color: "bg-red-500" },
+    { label: "Skipped", count: 15, total: 3089, color: "bg-slate-400" },
+    { label: "Unattempted", count: 2824, total: 3089, color: "bg-blue-500" },
   ];
 
   const submittedMockExams = [
