@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronLeft, Info, Check, Calendar, BarChart2, RotateCw, MoreVertical, Share2, RotateCcw, Apple, Bot, X, Trash2, ShoppingCart } from "lucide-react";
+import { ChevronLeft, Info, Check, Calendar, BarChart2, RotateCw, Apple, Bot, X, Trash2, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { IOSCheckoutSheet } from "@/components/iOSCheckoutSheet";
 import { AndroidCheckoutSheet } from "@/components/AndroidCheckoutSheet";
@@ -26,17 +26,20 @@ const mockExams = [
 ];
 
 const initialMyMockExams = [
-  { id: "mock-prog", title: "Practice Mock 1", hours: 4 },
-  { id: "mock-0", title: "Diagnostic Mock", score: "65%", date: "Jun 01 • 10:00 AM", scoreColor: "text-yellow-600" },
-  { id: "mock-00", title: "Mid-Term Review", score: "82%", date: "Jun 15 • 2:00 PM", scoreColor: "text-green-600" }
+  {
+    id: "ccm-mock-1",
+    title: "CCM Mock Exam 1",
+    subtitle: "Certified Case Manager practice exam",
+    description: "Comprehensive baseline readiness simulation",
+    questions: 180,
+    hours: 3,
+  }
 ];
 
 export default function MockExamPage() {
   const router = useRouter();
   
   const [baseMyExams, setBaseMyExams] = useState(initialMyMockExams);
-  const [selectedExamId, setSelectedExamId] = useState<string | null>(null);
-  const [activeDropdownId, setActiveDropdownId] = useState<string | null>(null);
   const [platform, setPlatform] = useState<"ios" | "android">("ios");
   
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -90,9 +93,7 @@ export default function MockExamPage() {
   };
 
   const handleStartExam = (exam: any) => {
-    setStartExamData(exam);
-    setIsWarningOpen(true);
-    setAgreed(false);
+    router.push(`/mock-exam/exam-overview/${exam.id}`);
   };
 
   const handleAgreeAndContinue = () => {
@@ -100,17 +101,6 @@ export default function MockExamPage() {
     alert("Exam Started! (POC placeholder - this would route to actual exam screen)");
   };
 
-  const handleDeleteExam = (id: string) => {
-    if (baseMyExams.some(e => e.id === id)) {
-      setBaseMyExams(baseMyExams.filter(e => e.id !== id));
-    }
-    if (purchasedExams.some(e => e.id === id)) {
-      const updated = purchasedExams.filter(e => e.id !== id);
-      setPurchasedExams(updated);
-      localStorage.setItem("purchasedMockExams", JSON.stringify(updated));
-    }
-    setActiveDropdownId(null);
-  };
 
   const allMyMockExams = [
     ...baseMyExams,
@@ -123,9 +113,9 @@ export default function MockExamPage() {
     <div className="relative h-full overflow-hidden flex flex-col bg-gray-50">
       {/* Header */}
       <div className="h-[56px] shrink-0 bg-primary flex items-center px-4 gap-2.5 z-10 shadow-sm relative">
-        <button onClick={() => router.back()} className="text-white hover:bg-white/10 p-1 -ml-1 rounded-full transition-colors">
+        <Link href="/home" className="text-white hover:bg-white/10 p-1 -ml-1 rounded-full transition-colors">
           <ChevronLeft className="w-7 h-7" strokeWidth={2} />
-        </button>
+        </Link>
         <span className="text-white text-lg font-normal tracking-wide ml-0.5">Mock Exam</span>
 
         {/* Platform Toggle & Cart */}
@@ -168,9 +158,9 @@ export default function MockExamPage() {
         {/* Tab Toggle Card */}
         <div className="bg-white border border-gray-200 shadow-[0_2px_4px_rgba(0,0,0,0.02)] rounded-[3px]">
           <div className="p-3 border-b border-gray-100">
-            <h3 className="text-[15px] font-medium text-secondary">My Exams & Exam Store:</h3>
+            <h3 className="text-[15px] font-medium text-secondary">Available Exams:</h3>
           </div>
-          <div className="p-4 flex items-center justify-center gap-4">
+          {/* <div className="p-4 flex items-center justify-center gap-4">
             <span className={`text-sm font-medium ${mockExamTab === "MY_EXAMS" ? "text-secondary" : "text-gray-400"}`}>
               MY EXAMS
             </span>
@@ -185,7 +175,7 @@ export default function MockExamPage() {
             <span className={`text-sm font-medium ${mockExamTab === "PURCHASE" ? "text-secondary" : "text-gray-400"}`}>
               PURCHASE
             </span>
-          </div>
+          </div> */}
         </div>
 
         {mockExamTab === "MY_EXAMS" ? (
@@ -218,15 +208,6 @@ export default function MockExamPage() {
                               <span className={`text-lg font-bold leading-none ${ce.scoreColor}`}>{ce.score}</span>
                               <span className="text-[10px] text-gray-500 uppercase tracking-wider font-medium mt-0.5">Score</span>
                             </div>
-                            <button 
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setActiveDropdownId(activeDropdownId === ce.id ? null : ce.id);
-                              }}
-                              className="p-1 -mr-1 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition-colors"
-                            >
-                              <MoreVertical className="w-5 h-5" />
-                            </button>
                           </div>
                         </div>
                         <div className="p-3 bg-gray-50/50">
@@ -235,7 +216,7 @@ export default function MockExamPage() {
                               e.preventDefault();
                               handleStartExam(ce);
                             }}
-                            className="w-full bg-white border border-gray-200 hover:border-primary/50 text-primary font-medium py-2.5 rounded-[3px] flex items-center justify-center gap-2 transition-colors text-sm shadow-sm"
+                            className="w-full bg-white border border-gray-200 hover:border-primary/50 text-primary font-medium py-2.5 rounded-[3px] flex items-center justify-center gap-2 transition-colors text-sm shadow-sm cursor-pointer"
                           >
                             <RotateCw className="w-4 h-4" />
                             Restart Exam
@@ -248,58 +229,25 @@ export default function MockExamPage() {
                       <div className="absolute top-0 left-0 bottom-0 w-1 bg-primary/80" />
                       <div className="p-4 pl-5 flex justify-between items-start border-b border-gray-50">
                         <div>
-                          <h4 className="font-medium text-[15px] text-secondary pr-8">{ce.title}</h4>
+                          <h4 className="font-medium text-[15px] text-secondary">{ce.title}</h4>
+                          {ce.description && (
+                            <p className="text-xs text-gray-500 mt-0.5">{ce.description}</p>
+                          )}
                           <p className="text-sm text-gray-500 mt-1 flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-                            Not Started • {ce.hours} Hours
+                            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            Not Started • {ce.questions ? `${ce.questions} Questions • ` : ""} {ce.hours || 3} Hours
                           </p>
                         </div>
-                        <button 
-                          onClick={() => setActiveDropdownId(activeDropdownId === ce.id ? null : ce.id)}
-                          className="absolute right-3 top-3 p-1 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition-colors"
-                        >
-                          <MoreVertical className="w-5 h-5" />
-                        </button>
                       </div>
                       <div className="p-3 bg-gray-50/50 pl-4">
                         <button 
                           onClick={() => handleStartExam(ce)}
-                          className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5 rounded-[3px] flex items-center justify-center transition-colors text-[15px] shadow-sm"
+                          className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5 rounded-[3px] flex items-center justify-center transition-colors text-[15px] shadow-sm cursor-pointer"
                         >
                           Start Exam
                         </button>
                       </div>
                     </div>
-                  )}
-
-                  {/* Dropdown Menu */}
-                  {activeDropdownId === ce.id && (
-                    <>
-                      <div className="fixed inset-0 z-10" onClick={() => setActiveDropdownId(null)} />
-                      <div className="absolute right-4 top-12 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-20 animate-in fade-in zoom-in-95 duration-100">
-                        <button 
-                          onClick={() => setActiveDropdownId(null)}
-                          className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
-                        >
-                          <Share2 className="w-4 h-4 text-gray-500" />
-                          Share {ce.score ? "Result" : "Exam"}
-                        </button>
-                        <button 
-                          onClick={() => setActiveDropdownId(null)}
-                          className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
-                        >
-                          <RotateCcw className="w-4 h-4 text-gray-500" />
-                          Request Refund
-                        </button>
-                        <button 
-                          onClick={() => handleDeleteExam(ce.id)}
-                          className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 border-t border-gray-100 mt-1 pt-2"
-                        >
-                          <Trash2 className="w-4 h-4 text-red-500" />
-                          Delete (POC Only)
-                        </button>
-                      </div>
-                    </>
                   )}
                 </div>
               ))}

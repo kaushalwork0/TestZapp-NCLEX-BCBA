@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -37,4 +38,17 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Dynamic toggles for highlights and strikeouts */
+.hide-highlights mark.exam-highlight {
+  background-color: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}
+
+.hide-strikeouts .exam-strikethrough {
+  text-decoration: none !important;
+  color: inherit !important;
+  opacity: 1 !important;
 }
